@@ -12,5 +12,5 @@ View other documentation files
 ------------------------------
 
 Create a new folder in the *Docs* folder and put all the markdown files there. The system is written to view the MooTools documentation, so 
-it should have the same filestructure. See [http://github.com/mootools/mootools-core/tree/master/Docs/][]
+it should have the same filestructure. See [http://github.com/mootools/mootools-core/tree/master/Docs/][http://github.com/mootools/mootools-core/tree/master/Docs/]
 
