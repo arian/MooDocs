@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__.'/Abstract.php';
+include_once dirname(__FILE__).'/Abstract.php';
 
 class Awf_Request_Path extends Awf_Request_Abstract {
 	

@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__.'/../Iterator.php';
+include_once dirname(__FILE__).'/../Iterator.php';
 
 abstract class Awf_Request_Abstract implements IteratorAggregate {
 	
