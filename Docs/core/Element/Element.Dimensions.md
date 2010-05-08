@@ -64,7 +64,6 @@ The following method is also available on the Window object.
 If you need to measure the properties of elements that are not displayed (either their display style is none or one of their parents display style is none), you will need to use [Element.measure][] to expose it.
 
 
-
 Element Method: getScrollSize {#Element:getScrollSize}
 ------------------------------------------------------
 
@@ -93,7 +92,6 @@ The following method is also available on the Window object.
 If you need to measure the properties of elements that are not displayed (either their display style is none or one of their parents display style is none), you will need to use [Element.measure][] to expose it.
 
 
-
 Element Method: getScroll {#Element:getScroll}
 ----------------------------------------------
 
@@ -116,7 +114,6 @@ The following method is also available on the Window object.
 ### Note:
 
 If you need to measure the properties of elements that are not displayed (either their display style is none or one of their parents display style is none), you will need to use [Element.measure][] to expose it.
-
 
 
 Element Method: getPosition {#Element:getPosition}
@@ -147,7 +144,6 @@ relative - (Element, defaults to the document) If set, the position will be rela
 ### Note:
 
 If you need to measure the properties of elements that are not displayed (either their display style is none or one of their parents display style is none), you will need to use [Element.measure][] to expose it.
-
 
 
 Element Method: setPosition {#Element:setPosition}
@@ -212,7 +208,6 @@ relative - (*element*, optional) if set, the position will be relative to this e
 ### Note:
 
 If you need to measure the properties of elements that are not displayed (either their display style is none or one of their parents display style is none), you will need to use [Element.measure][] to expose it.
-
 
 
 Element Method: getOffsetParent {#Element:getOffsetParent}

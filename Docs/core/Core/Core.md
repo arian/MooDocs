@@ -1,37 +1,7 @@
 Core {#Core}
 ============
 
-Core contains an handful of common sense functions used in [MooTools](http://mootools.net).
-
-
-
-Function: nil {#nil}
---------------------
-
-Returns true if a value is undefined.
-
-### Syntax:
-
-	nil(obj);
-
-### Arguments:
-
-1. obj - (*mixed*) The object to inspect.
-
-### Returns:
-
-* (*boolean*) If the object passed is null or undefined, returns true. Otherwise, returns false.
-
-### Example:
-
-	function myFunction(arg){
-		if(nil(arg)) alert('The object is null or undefined.');
-		else alert('The object is defined.');
-	}
-	
-### Notes:
-
-This method is equivalent to *$defined* from MooTools 1.2, but opposite.
+Core contains a handful of common sense functions used in [MooTools](http://mootools.net).
 
 
 
@@ -178,6 +148,10 @@ Merges any number of objects recursively without referencing them or their sub-o
 	var nestedObj2 = {a: {b: 2}};
 	var nested = Object.merge(nestedObj1, nestedObj2); //returns: {a: {b: 2, c: 1}}
 
+### Notes:
+
+This method is an object-specific equivalent of *$merge* from MooTools 1.2.
+
 
 
 Function: Object.clone {#Object-clone}
@@ -209,6 +183,7 @@ Returns a copy of an object.
 ### Notes:
 
 This is an object-specific equivalent of *$unlink* from MooTools 1.2.
+
 
 
 Function: Object.append {#Object-append}
@@ -243,8 +218,12 @@ Copies all the properties from the second object passed in to the first object p
 	Object.append(firstObj, secondObj);
 	//firstObj is now: {'name': 'John', 'lastName': 'Dorian', 'age': '20', 'sex': 'male'};
 
+### Notes:
 
- 
+This method is an object-specific equivalent of *$extend* from MooTools 1.2.
+
+
+
 ----------------------
 
  
@@ -280,8 +259,20 @@ This method has been deprecated. Please use [Function:clear](/core/Types/Functio
 Function: $defined {#defined}
 -----------------------------
 
-This method has been deprecated. Please use [nil](#nil) instead.
+This method has been deprecated.
 
+If you really need this function you can implement it like so:
+
+### Example:
+
+	var $defined = function(obj){
+		return (obj != undefined);
+	};
+
+	// Or just use it like this
+	if(obj != undefined){
+		// Do something
+	}
 
 
 Function: $arguments {#arguments}
@@ -385,7 +376,7 @@ This method has been deprecated. Please use *Date.now()* instead.
 Function: $try {#try}
 ---------------------
 
-This method has been deprecated. Please use [Function.stab](/core/Types/Function/#Function-stab) instead.
+This method has been deprecated. Please use [Function.attempt](/core/Types/Function/#Function-attempt) instead.
 
 
 
@@ -427,8 +418,8 @@ This method has been deprecated. Please use [typeOf](#typeOf) instead.
 
 
 
-[Hash]: /core/Native/Hash
-[Array]: /core/Native/Array
-[Function:bind]: /core/Native/Function/#Function:bind
-[Function:delay]: /core/Native/Function/#Function:delay
-[Function:periodical]: /core/Native/Function/#Function:periodical
+[Hash]: /core/Types/Hash
+[Array]: /core/Types/Array
+[Function:bind]: /core/Types/Function/#bind
+[Function:delay]: /core/Types/Function/#delay
+[Function:periodical]: /core/Types/Function/#periodical
