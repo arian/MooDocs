@@ -39,7 +39,6 @@ $markdown = file_get_contents($filePath);
 // Get the content of the current page
 $md = new MarkdownExtra_Parser();
 $md->no_markup = true;
-$md->no_entities = true;
 $content = $md->transform($markdown);
 // Replace urls with the right ones
 $content = str_replace('href="/','href="'.$baseurl.'/',$content);
