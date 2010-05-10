@@ -6,15 +6,26 @@ include_once 'libs/markdown.php';
 
 $rq = new Awf_Request_Path();
 
-$coreOrMore = 'core';
+$docsPath = 'Docs/core';
+$defaultFile = 'Core/Core';
 
 // Determine the right file
-$file = (string) $rq;
-if(empty($file)) $file = $coreOrMore.'Core/Core';
-$file = preg_replace('/[^a-zA-Z0-9\-\.\/]+/','',str_replace('../','',$file));
-$file = 'Docs/'.$file.'.md';
-if(!file_exists($file)) $file = 'Docs/'.$coreOrMore.'/Core/Core.md';
+$filePath = $rq->toArray();
+if(!empty($filePath) && isset($filePath[0])){
+	unset($filePath[0]);
+	$file = implode('/',$filePath);
+}else{
+	$file = $defaultFile;
+}
 
+$file = preg_replace('/[^a-zA-Z0-9\-\.\/]+/','',str_replace('../','',$file));
+$file = $docsPath.'/'.$file.'.md';
+
+if(!file_exists($file)){
+	$file = $docsPath.'/'.$defaultFile;
+}
+
+// Create template instance
 $tpl = new Awf_Template();
 
 $tpl->baseurl = $baseurl = $_SERVER['SCRIPT_NAME'];
@@ -32,11 +43,11 @@ $tpl->content = $content;
 
 // Get the menu
 $categories = array();
-$dir = new DirectoryIterator('Docs/'.$coreOrMore);
+$dir = new DirectoryIterator($docsPath);
 foreach ($dir as $fileinfo){
 	if(!$fileinfo->isDot() && $fileinfo->isDir()){
     	$category = array();
-    	$dir2 = new DirectoryIterator('Docs/'.$coreOrMore.'/'.$fileinfo->getFilename());
+    	$dir2 = new DirectoryIterator($docsPath.'/'.$fileinfo->getFilename());
 		foreach($dir2 as $file){
 			if($file->isFile()) $category[] = str_replace('.md','',$file->getFilename());
 		}
