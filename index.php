@@ -6,23 +6,24 @@ include_once 'libs/markdown.php';
 
 $rq = new Awf_Request_Path();
 
-$docsPath = 'Docs/core';
+$docsPath = '../mootools-core/Docs';
 $defaultFile = 'Core/Core';
 
 // Determine the right file
-$filePath = $rq->toArray();
-if(!empty($filePath) && isset($filePath[0])){
-	unset($filePath[0]);
-	$file = implode('/',$filePath);
+$file = $rq->toArray();
+if(!empty($file) && isset($file[0])){
+	unset($file[0]);
+	$file = implode('/',$file);
 }else{
 	$file = $defaultFile;
 }
 
 $file = preg_replace('/[^a-zA-Z0-9\-\.\/]+/','',str_replace('../','',$file));
-$file = $docsPath.'/'.$file.'.md';
+$filePath = $docsPath.'/'.$file.'.md';
 
-if(!file_exists($file)){
-	$file = $docsPath.'/'.$defaultFile;
+if(!file_exists($filePath)){
+	$file = $defaultFile;
+	$filePath = $docsPath.'/'.$file;
 }
 
 // Create template instance
@@ -30,9 +31,10 @@ $tpl = new Awf_Template();
 
 $tpl->baseurl = $baseurl = $_SERVER['SCRIPT_NAME'];
 $tpl->basepath = $basepath = str_replace('index.php','',$baseurl);
+$tpl->title = $file;
 
 // Unparsed markdown content;
-$markdown = file_get_contents($file);
+$markdown = file_get_contents($filePath);
 
 // Get the content of the current page
 $content = markdown($markdown);
