@@ -60,9 +60,23 @@ $tpl->menu = $categories;
 
 // Get the methods
 $methods = array();
-preg_match_all('/\{#(.*)\}/',$markdown,$methods);
-if(isset($methods[1]) && is_array($methods[1])){
-	$tpl->methods = $methods[1];
+preg_match_all('/\{#(.*)\}/',$markdown,$tmpMethods);
+if(isset($tmpMethods[1]) && is_array($tmpMethods[1])){
+	$methods = array();
+	
+	foreach($tmpMethods[1] as $method){
+		$tmp = explode(':',$method);
+		if(count($tmp) >= 2){
+			$groupName = $tmp[0];
+			unset($tmp[0]);
+			if(!isset($methods[$groupName])) $methods[$groupName] = array();
+			$methods[$groupName][] = implode(':',$tmp);
+		}else{
+			$methods[$method] = array();
+		}
+	}
+		
+	$tpl->methods = $methods;
 }
 
 

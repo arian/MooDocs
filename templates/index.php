@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<link href="<?php echo $basepath; ?>assets/docs.css" rel="stylesheet" type="text/css" media="screen" />
+	<title><?php echo htmlentities($title); ?></title>
 
 </head>
 <body>
@@ -18,7 +19,7 @@
 <div id="menu">
 	<ul>
 	<?php foreach($menu as $category => $link): ?>
-	<li><strong><?php echo $category; ?></strong><ul>
+		<li><strong><?php echo $category; ?></strong><ul>
 		<?php foreach($link as $text): ?>
 		<li><a href="<?php echo $baseurl.'/core/'.$category.'/'.$text; ?>"><?php echo $text; ?></a></li>
 		<?php endforeach; ?>
@@ -30,8 +31,15 @@
 	
 	<div class="methods">
 		<ul>
-		<?php foreach($methods as $method): ?>
-			<li><a href="<?php echo '#'.$method; ?>"><?php echo $method; ?></a></li>
+		<?php foreach($methods as $group => $submethods): ?>
+			<li>
+				<strong><a href="<?php echo '#'.$group; ?>"><?php echo str_replace('-','.',$group); ?></a></strong>
+				<ul>
+					<?php foreach($submethods as $method): ?>
+					<li><a href="<?php echo '#'.$group.':'.$method; ?>"><?php echo $method; ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			</li>
 		<?php endforeach; ?>
 		</ul>
 	</div>
