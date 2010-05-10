@@ -6,14 +6,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<link href="<?php echo $basepath; ?>assets/docs.css" rel="stylesheet" type="text/css" media="screen" />
-	<title><?php echo htmlentities($title); ?></title>
+	<title>MooTools 1.3 Documentation - <?php echo htmlentities($title); ?></title>
 
 </head>
 <body>
 
 <div id="container">
 <div id="header">
-<h1><span id="repo-title"></span> Documentation</h1>
+<h1>MooTools 1.3 Documentation</h1>
 </div>
 
 <div id="menu">
