@@ -50,8 +50,8 @@ foreach ($dir as $fileinfo){
 	if(!$fileinfo->isDot() && $fileinfo->isDir()){
     	$category = array();
     	$dir2 = new DirectoryIterator($docsPath.'/'.$fileinfo->getFilename());
-		foreach($dir2 as $file){
-			if($file->isFile()) $category[] = str_replace('.md','',$file->getFilename());
+		foreach($dir2 as $fileinfo2){
+			if($fileinfo2->isFile()) $category[] = str_replace('.md','',$fileinfo2->getFilename());
 		}
 		$categories[$fileinfo->getFilename()] = $category;
 	}
