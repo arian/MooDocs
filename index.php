@@ -6,7 +6,7 @@ include_once 'libs/markdown.php';
 
 $rq = new Awf_Request_Path();
 
-$docsPath = 'Docs/core';
+$docsPath = '../mootools-core/Docs';
 $defaultFile = 'Core/Core';
 
 // Determine the right file
