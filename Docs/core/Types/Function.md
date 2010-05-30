@@ -1,5 +1,5 @@
-Function {#Function}
-============================
+Type: Function {#Function}
+==========================
 
 Function Methods.
 
@@ -9,7 +9,7 @@ Function Methods.
 
 
 
-Function: Function.from {#Function-from}
+Function: Function.from {#Function:Function-from}
 ----------------------------------------
 
 If the passed argument is a function, it will return itself. Otherwise, it will return a function that returns the passed argument.
@@ -42,7 +42,7 @@ This function is equivalent to the following deprecated MooTools 1.2 methods:
 	var fn2 = Function.from(foo);	// Equivalent to var fn2 = $lambda(foo);
 
 
-Function method: Function.attempt {#Function:attempt}
+Function: Function.attempt {#Function:Function-attempt}
 -----------------------------
 
 Tries to execute a number of functions. Returns immediately the return value of the first non-failed function without executing successive functions, or null.
@@ -86,6 +86,98 @@ Tries to execute a number of functions. Returns immediately the return value of 
 ### Notes:
 
 This method is an equivalent of *$try* from MooTools 1.2.
+
+
+
+Function method: extend {#Function:extend}
+---------------------------------
+
+Add methods to a function
+
+### Syntax:
+
+	myFunction.extend(key,value);
+
+### Arguments:
+
+1. key - (*string*) The key of the prototype
+2. value - (*mixed*) The function or another value of the protoype
+
+### Example: 
+
+	var myFunction = function(){};
+	myFunction.extend('alert',function(text){
+		alert(text);
+	});
+	myFunction.alert('Hello!'); // Alerts Hello!
+
+
+Function method: implement {#Function:implement}
+---------------------------------------
+
+Add methods to the prototype
+
+### Syntax:
+
+	myFunction.implement(key,value);
+
+### Arguments:
+
+1. key - (*string*) The key of the prototype
+2. value - (*mixed*) The function or another value of the protoype
+
+### Example: 
+
+	var myFunction = function(){};
+	myFunction.implement('alert',function(text){
+		alert(text);
+	});
+	var myInstance = new myFunction();
+	myInstance.alert('Hello!'); // Alerts Hello!
+
+### Notes:
+
+The difference between *implement* and *extend*, is that implement adds the value to the prototype.
+So with *implement* each instance of the function will have this method or property while with *extend*
+the method or property is added to a single instance.
+
+
+Function method: attempt {#Function:attempt}
+---------------------------
+
+Tries to execute a single function. Returns immediately the return value of the function if it does not fail, or null.
+
+### Syntax:
+
+	var myFunctionResult = myFunction.attempt(args[, bind]);
+
+### Arguments:
+
+1. args - (*mixed*) An argument, or array of arguments to run the function with.
+2. bind - (*object*, optional) The object that the "this" of the function will refer to.
+
+### Returns:
+
+* (*mixed*) This Function's return value.
+* (*null*) `null` if the function fails.
+
+### Examples:
+
+	var myFunction = function(){
+		return some.made.up.object;
+	};
+	myFunction.attempt(); // Returns: 'null'
+
+
+	var myFunction = function(val){
+		return val;
+	};
+	myFunction.attempt(false); // Returns: 'false'
+
+### See Also:
+
+- See [Function.attempt](#Function:Function-attempt) for using more than one functions.
+
 
 
 Function method: run {#Function:run}
@@ -264,6 +356,25 @@ Executes a function in the specified intervals of time. Periodic execution can b
 
 - [MDC setInterval][], [MDC clearInterval][]
 
+
+Deprecated Functions {#Deprecated-Functions}
+============================================
+
+Function method: create {#Deprecated-Functions:create}
+------------------------------------------------------
+
+This function has been deprecated.
+
+Function method: bindWithEvent {#Deprecated-Functions:bindWithEvent}
+------------------------------------------------------------------
+
+This function has been deprecated.
+
+### Example how you could replace this method:
+
+	myElement.addEvent('click',function(e){
+		myFunction.bind(bind, [e]);
+	});
 
 
 [options]: #Function:create:options
