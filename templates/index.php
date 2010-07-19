@@ -21,7 +21,7 @@
 	<?php foreach($menu as $category => $link): ?>
 		<li><strong><?php echo $category; ?></strong><ul>
 		<?php foreach($link as $text): ?>
-		<li><a href="<?php echo $baseurl.'/core/'.$category.'/'.$text; ?>"><?php echo $text; ?></a></li>
+		<li><a href="<?php echo $baseurl.'/'.$module.'/'.$category.'/'.$text; ?>"><?php echo $text; ?></a></li>
 		<?php endforeach; ?>
 	</ul></li>
 	<?php endforeach; ?>

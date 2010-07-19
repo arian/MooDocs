@@ -6,11 +6,14 @@ include_once 'libs/markdown.php';
 
 $rq = new Awf_Request_Path();
 
-$docsPath = 'Docs/core';
-$defaultFile = 'Core/Core';
-
 // Determine the right file
 $file = $rq->toArray();
+
+$module = !empty($file[0]) ? $file[0] : 'core';
+
+$docsPath = 'Docs/'.$module;
+$defaultFile = 'Core/'.ucfirst($module).'.md';
+
 if(!empty($file) && isset($file[0])){
 	unset($file[0]);
 	$file = implode('/',$file);
@@ -32,6 +35,7 @@ $tpl = new Awf_Template();
 $tpl->baseurl = $baseurl = $_SERVER['SCRIPT_NAME'];
 $tpl->basepath = $basepath = str_replace('index.php','',$baseurl);
 $tpl->title = $file;
+$tpl->module = $module;
 
 // Unparsed markdown content;
 $markdown = file_get_contents($filePath);
