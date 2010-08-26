@@ -5,7 +5,7 @@ An XMLHttpRequest Wrapper.
 
 ### Implements:
 
-[Chain](/Class/Class.Extras#Chain), [Events](/Class/Class.Extras#Events), [Options](/Class/Class.Extras#Options)
+[Chain][], [Events][], [Options][]
 
 ### Syntax:
 
@@ -160,7 +160,7 @@ Returns the given response header or null if not found.
 ### Example:
 
 	var myRequest = new Request({url: 'getData.php', method: 'get', onSuccess: function(responseText, responseXML) {
-		alert(this.getHeader('Date')); // Alerts the server date (for example, 'Thu, 26 Feb 2009 20:26:06 GMT')
+		alert(this.getHeader('Date')); // alerts the server date (for example, 'Thu, 26 Feb 2009 20:26:06 GMT')
 	}});
 
 Request Method: send {#Request:send}
@@ -191,14 +191,14 @@ MooTools provides several aliases for [Request:send][] to make it easier to use 
 	var myRequest = new Request({url: 'http://localhost/some_url'});
 
 	myRequest.post('save=username&name=John');
-	// Above is equivalent to
+	//...is equivalent to:
 	myRequest.send({
 		method: 'post',
 		data: 'save=username&name=John'
 	});
 
 	myRequest.get('save=username&name=John');
-	// Above is equivalent to
+	//...is equivalent to:
 	myRequest.send({
 		method: 'get',
 		data: 'save=username&name=John'
@@ -224,10 +224,10 @@ Cancels the currently running request, if any.
 
 
 
-Hash: Element.Properties {#Element-Properties}
+Object: Element.Properties {#Element-Properties}
 ==============================================
 
-see [Element.Properties](/Element/Element/#Element-Properties)
+see [Element.Properties][]
 
 Element Property: send {#Element-Properties:send}
 -------------------------------------------------
@@ -259,11 +259,11 @@ Returns the previously set Request instance (or a new one with default options).
 
 #### Syntax:
 
-	el.get('send'[, options]);
+	el.get('send');
 
 #### Arguments:
 
-1. options - (*object*, optional) The Request options.  If passed, this method will generate a new instance of the Request class.
+1. property - (*string*) the Request property argument.
 
 ### Returns:
 
@@ -273,12 +273,12 @@ Returns the previously set Request instance (or a new one with default options).
 
 	el.get('send', {method: 'get'});
 	el.send();
-	el.get('send'); //Returns the Request instance.
+	el.get('send'); // returns the Request instance.
 
-Native: Element {#Element}
-==========================
+Type: Element {#Element}
+========================
 
-Custom Native to allow all of its methods to be used with any DOM element via the dollar function [$][].
+Custom Type to allow all of its methods to be used with any DOM element via the dollar function [$][].
 
 
 Element Method: send {#Element:send}
@@ -319,6 +319,10 @@ Sends a form or a container of inputs with an HTML request.
 
 
 
-[$]: /core/Element/Element/#dollar
+[$]: /core/Element/Element/#Window:dollar
 [Request:send]: #Request:send
+[Element.Properties]: /core/Element/Element/#Element-Properties
 [URI]: /more/Native/URI
+[Chain]: /core/Class/Class.Extras#Chain
+[Events]: /core/Class/Class.Extras#Events
+[Options]: /core/Class/Class.Extras#Options

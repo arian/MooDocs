@@ -1,5 +1,5 @@
-Function {#Function}
-============================
+Type: Function {#Function}
+==========================
 
 Function Methods.
 
@@ -9,7 +9,7 @@ Function Methods.
 
 
 
-Function: Function.from {#Function-from}
+Function: Function.from {#Function:Function-from}
 ----------------------------------------
 
 If the passed argument is a function, it will return itself. Otherwise, it will return a function that returns the passed argument.
@@ -38,11 +38,11 @@ If the passed argument is a function, it will return itself. Otherwise, it will 
 
 This function is equivalent to the following deprecated MooTools 1.2 methods:
 
-	var fn1 = Function.from();		// Equivalent to var fn1 = $empty();
-	var fn2 = Function.from(foo);	// Equivalent to var fn2 = $lambda(foo);
+	var fn1 = Function.from();		// equivalent to var fn1 = $empty();
+	var fn2 = Function.from(foo);	// equivalent to var fn2 = $lambda(foo);
 
 
-Function method: Function.attempt {#Function:attempt}
+Function: Function.attempt {#Function:Function-attempt}
 -----------------------------
 
 Tries to execute a number of functions. Returns immediately the return value of the first non-failed function without executing successive functions, or null.
@@ -53,7 +53,7 @@ Tries to execute a number of functions. Returns immediately the return value of 
 
 ### Arguments:
 
-* fn   - (*function*) The function to execute.
+* fn   - (*function*) Any number of functions to execute.
 
 ### Returns:
 
@@ -88,6 +88,98 @@ Tries to execute a number of functions. Returns immediately the return value of 
 This method is an equivalent of *$try* from MooTools 1.2.
 
 
+
+Function method: extend {#Function:extend}
+---------------------------------
+
+Add methods to a function
+
+### Syntax:
+
+	myFunction.extend(key,value);
+
+### Arguments:
+
+1. key - (*string*) The key of the prototype
+2. value - (*mixed*) The function or another value of the prototype
+
+### Example: 
+
+	var myFunction = function(){};
+	myFunction.extend('alert',function(text){
+		alert(text);
+	});
+	myFunction.alert('Hello!'); // alerts Hello!
+
+
+Function method: implement {#Function:implement}
+---------------------------------------
+
+Add methods to the prototype
+
+### Syntax:
+
+	myFunction.implement(key,value);
+
+### Arguments:
+
+1. key - (*string*) The key of the prototype
+2. value - (*mixed*) The function or another value of the prototype
+
+### Example: 
+
+	var myFunction = function(){};
+	myFunction.implement('alert',function(text){
+		alert(text);
+	});
+	var myInstance = new myFunction();
+	myInstance.alert('Hello!'); // alerts Hello!
+
+### Notes:
+
+The difference between *implement* and *extend*, is that implement adds the value to the prototype.
+So with *implement* each instance of the function will have this method or property while with *extend*
+the method or property is added to a single instance.
+
+
+Function method: attempt {#Function:attempt}
+---------------------------
+
+Tries to execute a single function. Returns immediately the return value of the function if it does not fail, or null.
+
+### Syntax:
+
+	var myFunctionResult = myFunction.attempt(args[, bind]);
+
+### Arguments:
+
+1. args - (*mixed*) An argument, or array of arguments to run the function with.
+2. bind - (*object*, optional) The object that the "this" of the function will refer to.
+
+### Returns:
+
+* (*mixed*) This Function's return value.
+* (*null*) `null` if the function fails.
+
+### Examples:
+
+	var myFunction = function(){
+		return some.made.up.object;
+	};
+	myFunction.attempt(); // returns 'null'
+
+
+	var myFunction = function(val){
+		return val;
+	};
+	myFunction.attempt(false); // returns 'false'
+
+### See Also:
+
+- See [Function.attempt](#Function:Function-attempt) for using more than one functions.
+
+
+
 Function method: run {#Function:run}
 ---------------------------
 
@@ -114,7 +206,7 @@ Runs the Function with specified arguments and binding. The same as apply but re
 		return a + b + c;
 	}
 	var myArgs = [1,2,3];
-	myFn.run(myArgs); //Returns: 6
+	myFn.run(myArgs); // returns 6
 
 
 #### Run With Binding:
@@ -123,7 +215,7 @@ Runs the Function with specified arguments and binding. The same as apply but re
 		return a + b + c + this;
 	}
 	var myArgs = [1,2,3];
-	myFn.run(myArgs, 6); //Returns: 12
+	myFn.run(myArgs, 6); // returns 12
 
 
 
@@ -158,8 +250,8 @@ Returns a closure with arguments and bind.
 	var myItems = myFunction.pass(['peach', 'apple', 'orange']);
 
 	//Later in the code, the functions can be executed:
-	alert(myHello()); //Passes "hello" to myFunction.
-	alert(myItems()); //Passes the array of items to myFunction.
+	alert(myHello()); // passes 'hello' to myFunction.
+	alert(myItems()); // passes the array of items to myFunction.
 
 
 
@@ -185,11 +277,11 @@ Changes the scope of `this` within the target function to refer to the bind para
 
 	function myFunction(){
 		//Note that 'this' here refers to window, not an element.
-		//The function must be bound to the element we want to manipulate.
+		// the function must be bound to the element we want to manipulate.
 		this.setStyle('color', 'red');
 	};
 	var myBoundFunction = myFunction.bind(myElement);
-	myBoundFunction(); //This will make myElement's text red.
+	myBoundFunction(); // makes myElement's text red
 
 
 Function method: delay {#Function:delay}
@@ -214,13 +306,14 @@ Delays the execution of a function by a specified duration.
 ### Example:
 
 	var myFunction = function(){ alert('moo! Element id is: ' + this.id); };
-	// Wait 50 milliseconds, then call myFunction and bind myElement to it.
-	myFunction.delay(50, myElement); //Alerts: 'moo! Element id is: ... '
+	
+	//wait 50 milliseconds, then call myFunction and bind myElement to it
+	myFunction.delay(50, myElement); // alerts: 'moo! Element id is: ... '
 
-	// An anonymous function which waits a second and then alerts.
+	//an anonymous function which waits a second and then alerts
 	(function(){ alert('one second later...'); }).delay(1000);
 	
-	// To stop the delay, clearTimeout can be used like so
+	//to stop the delay, clearTimeout can be used like so:
 	var timer = myFunction.delay(50);
 	clearTimeout(timer);
 
@@ -254,9 +347,9 @@ Executes a function in the specified intervals of time. Periodic execution can b
 
 	var Site = { counter: 0 };
 	var addCount = function(){ this.counter++; };
-	addCount.periodical(1000, Site); //Will add the number of seconds at the Site.
+	addCount.periodical(1000, Site); //adds the number of seconds at the Site.
 	
-	// The interval can be stopped using the clearInterval function
+	// the interval can be stopped using the clearInterval function
 	var timer = myFunction.periodical(1000);
 	clearInterval(timer);
 
@@ -264,6 +357,25 @@ Executes a function in the specified intervals of time. Periodic execution can b
 
 - [MDC setInterval][], [MDC clearInterval][]
 
+
+Deprecated Functions {#Deprecated-Functions}
+============================================
+
+Function method: create {#Deprecated-Functions:create}
+------------------------------------------------------
+
+This function has been deprecated.
+
+Function method: bindWithEvent {#Deprecated-Functions:bindWithEvent}
+------------------------------------------------------------------
+
+This function has been deprecated.
+
+### Example how you could replace this method:
+
+	myElement.addEvent('click',function(e){
+		myFunction.bind(bind, [e]);
+	});
 
 
 [options]: #Function:create:options
