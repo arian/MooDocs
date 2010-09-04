@@ -11,8 +11,12 @@ $file = $rq->toArray();
 
 $module = !empty($file[0]) ? $file[0] : 'core';
 
-$docsPath = 'Docs/'.$module;
-$defaultFile = 'Core/'.ucfirst($module).'.md';
+$docsPath = '../mootools-'.$module.'/Docs/';
+
+switch ($module){
+	case 'more': $defaultFile = 'More/More.md'; break;
+	default : $defaultFile = 'Intro.md'; break;
+}
 
 if(!empty($file) && isset($file[0])){
 	unset($file[0]);
