@@ -9,14 +9,16 @@ $rq = new Awf_Request_Path();
 // Determine the right file
 $file = $rq->toArray();
 
+$packages = array(
+	'core' => array('../mootools-core/Docs/', 'Intro.md'),
+	'more' => array('../mootools-more/Docs/', 'More/More.md'),
+	'art' => array('../art/Docs/', 'ART/ART.md')
+);
+
 $module = !empty($file[0]) ? $file[0] : 'core';
+$docsPath = $packages[$module][0];
+$defaultFile = $packages[$module][1];
 
-$docsPath = '../mootools-'.$module.'/Docs/';
-
-switch ($module){
-	case 'more': $defaultFile = 'More/More.md'; break;
-	default : $defaultFile = 'Intro.md'; break;
-}
 
 if(!empty($file) && isset($file[0])){
 	unset($file[0]);
@@ -73,7 +75,7 @@ $methods = array();
 preg_match_all('/\{#(.*)\}/',$markdown,$tmpMethods);
 if(isset($tmpMethods[1]) && is_array($tmpMethods[1])){
 	$methods = array();
-	
+
 	foreach($tmpMethods[1] as $method){
 		$tmp = explode(':',$method);
 		if(count($tmp) >= 2){
@@ -85,7 +87,7 @@ if(isset($tmpMethods[1]) && is_array($tmpMethods[1])){
 			$methods[$method] = array();
 		}
 	}
-		
+
 	$tpl->methods = $methods;
 }
 
