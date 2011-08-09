@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<link href="<?php echo $basepath; ?>assets/docs.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="<?php echo $basepath; ?>assets/geshi.css" rel="stylesheet" type="text/css" media="screen" />
 	<title>MooTools 1.3 Documentation - <?php echo htmlentities($title); ?></title>
 
 </head>
