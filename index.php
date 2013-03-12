@@ -1,8 +1,11 @@
 <?php
 
+header('Content-type: text/html');
+
 include_once 'libs/Request/Path.php';
 include_once 'libs/Template.php';
 include_once 'libs/markdown.php';
+include_once 'libs/geshi/geshi.php';
 
 $rq = new Awf_Request_Path();
 
@@ -52,6 +55,22 @@ $md->no_markup = true;
 $content = $md->transform($markdown);
 // Replace urls with the right ones
 $content = str_replace('href="/','href="'.$baseurl.'/',$content);
+// Highlight code examples
+$geshi = new GeSHi('', 'javascript');
+$geshi->enable_classes();
+foreach ( explode("<pre><code>", $content) as $key => $value ){
+	if ( $key === 0 ){
+		$content = $value;
+		continue;
+	}
+
+	$halve = explode("</code></pre>", $value);
+
+	$geshi->set_source(rtrim($halve[0]));
+	$content .= $geshi->parse_code();
+
+	$content .= $halve[1];
+}
 $tpl->content = $content;
 
 
